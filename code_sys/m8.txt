@@ -1,0 +1,77 @@
+Attribute VB_Name = "模块8"
+Sub 类1增()
+
+Dim sh As Worksheet
+Dim j, l As Integer
+Dim i, k, h As Long
+Dim c As Long
+
+
+
+If Sheet1.Range("K3") = "硬件" Then
+   Set sh = Sheet2
+ElseIf Sheet1.Range("K3") = "化学研发" Then
+   Set sh = Sheet3
+ElseIf Sheet1.Range("K3") = "后勤" Then
+   Set sh = Sheet4
+Else: MsgBox ("请重新选择正确的选项：")
+End If
+If sh.[f2] = "" Then
+    j = 1
+Else:
+    j = sh.[F65536].End(xlUp).Row + 1
+End If
+
+
+For i = 1 To 65536
+      If Sheet1.Range("L3") = sh.Cells(i, 3) Then
+        c = i
+        Exit For
+      End If
+Next
+
+
+
+If Sheet1.Range("M3") = "" Then
+    MsgBox ("请输入类1：")
+Else:
+    For i = c To 65536
+    
+        If Sheet1.Range("M3") = sh.Cells(i, 3) Then
+            MsgBox ("该类名已存在！")
+            Sheet1.Range("M6") = 1
+        End If
+    Next
+End If
+
+For i = 1 To 65536
+      If Sheet1.Range("L3") = sh.Cells(i, 3) Then
+        For k = 1 To 100
+            If sh.Cells(i + k, 3) = "" Then
+                h = i + k
+                Exit For
+            End If
+        Next
+        Exit For
+      End If
+Next
+
+If Sheet1.Range("M6") = 0 And Sheet1.Range("M3") <> "" Then
+    
+    sh.Cells(h, 3) = Sheet1.Range("M3")
+    Sheet1.Range("M4") = sh.Cells(h, 4)
+    sh.Cells(j, 5) = Sheet1.Range("M3")
+    For l = 1 To 99
+        If l < 10 Then
+        sh.Cells(j + l, 6) = "'0" & l
+        Else:
+        sh.Cells(j + l, 6) = l
+        End If
+    Next
+    MsgBox ("类1已增添！")
+End If
+Sheet1.Range("M6") = 0
+End Sub
+
+
+

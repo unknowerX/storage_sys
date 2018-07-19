@@ -1,0 +1,28 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+END
+Attribute VB_Name = "Sheet3"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+
+Sub 录入()
+Dim i, l
+
+For i = 2 To 3000
+   
+    If Worksheets("入库表单").Cells(i, 14) = 1 Then
+    l = Worksheets("物料库").[a65536].End(xlUp).Row + 1
+    Worksheets("物料库").Cells(l, 1) = Cells(i, 5)
+    Worksheets("物料库").Cells(l, 2) = Cells(i, 6)
+    Worksheets("物料库").Cells(l, 3) = Cells(i, 7)
+    Worksheets("物料库").Cells(l, 4) = Cells(i, 8)
+    Worksheets("物料库").Cells(l, 5) = Cells(i, 9)
+    Worksheets("物料库").Cells(l, 8).Interior.ColorIndex = 15
+    Worksheets("物料库").Cells(l, 7) = Cells(i, 12)
+    End If
+Next
+Sheets("物料库").Select
+End Sub

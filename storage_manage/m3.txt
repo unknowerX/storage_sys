@@ -1,0 +1,5 @@
+Attribute VB_Name = "模块3"
+Sub 跳转2()
+Worksheets("物料库").Cells(5, 1).Select
+End Sub
+

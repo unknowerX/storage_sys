@@ -1,0 +1,41 @@
+Attribute VB_Name = "模块2"
+Sub 子类2()
+'--------------------------------------------------------------------
+
+Dim ia, ib As Integer
+Dim k As Long
+Dim sh As Worksheet
+
+If Sheet1.Range("A3") = "硬件" Then
+   Set sh = Sheet2
+ElseIf Sheet1.Range("A3") = "化学研发" Then
+   Set sh = Sheet3
+ElseIf Sheet1.Range("A3") = "后勤" Then
+   Set sh = Sheet4
+Else: MsgBox ("请重新选择正确的选项：")
+End If
+
+
+
+If Sheet1.Range("C3") = "" Then
+    Sheet1.Range("D4:D104") = ""
+    Sheet1.Range("C4") = ""
+Else
+    For k = 1 To 65536
+        If Sheet1.Range("C3") = sh.Cells(k, 3) Then
+            Sheet1.Range("C4") = sh.Cells(k, 4)
+        End If
+    Next
+    For ia = 1 To 65536
+    If Sheet1.Range("C3") = sh.Range("E" & ia) Then
+        For ib = ia + 1 To ia + 99
+            Sheet1.Cells(ib - ia + 4, 4) = sh.Cells(ib, 5)
+            
+        Next
+    End If
+    Next
+End If
+
+'--------------------------------------------------------------------
+End Sub
+

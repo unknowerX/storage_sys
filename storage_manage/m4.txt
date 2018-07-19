@@ -1,0 +1,22 @@
+Attribute VB_Name = "模块4"
+Sub 出库()
+Dim irow As Integer, l
+Sheets("首页").Activate
+irow = ActiveWindow.ActiveCell.Row
+    If Worksheets("首页").Cells(irow, 4) <> "" Then
+        l = Worksheets("出库表单").[e65536].End(xlUp).Row + 1
+        With Sheets("出库表单")
+        .Cells(l, 5) = Worksheets("首页").Cells(irow, 4)
+        .Cells(l, 6) = Worksheets("首页").Cells(irow, 5)
+        .Cells(l, 7) = Worksheets("首页").Cells(irow, 6)
+        .Cells(l, 8) = Worksheets("首页").Cells(irow, 7)
+        End With
+        Sheets("出库表单").Select
+    Else:
+        MsgBox ("本行无可导内容！")
+
+    
+    End If
+
+
+End Sub

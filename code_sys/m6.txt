@@ -1,0 +1,24 @@
+Attribute VB_Name = "模块6"
+Sub get编码()
+Dim i, k, j As Integer
+Dim a, b As String
+Sheet1.Range("G3") = Sheet1.Range("A4") & Sheet1.Range("B4") & Sheet1.Range("C4") & Sheet1.Range("D4") & Sheet1.Range("E4") & Sheet1.Range("F4")
+k = Sheet5.[G65536].End(xlUp).Row + 1
+For i = 2 To k
+    If Sheet1.Range("G3") = Sheet5.Cells(i, 7) Then
+        MsgBox Sheet1.Range("G4") & "在编码库中已存在！"
+        Sheet5.Range("G1").Interior.ColorIndex = 15
+    End If
+Next
+If Sheet5.Range("G1").Interior.ColorIndex <> 15 Then
+    a = Format(Date, "yyyy年m月d日")
+    b = Format(Time, "hh:mm")
+    For j = 1 To 7
+        Sheet5.Cells(k, j) = Sheet1.Cells(3, j)
+    Next
+    Sheet5.Cells(k, 8) = a
+    Sheet5.Cells(k, 9) = b
+    MsgBox ("Loaded!")
+End If
+Sheet5.Range("G1").Interior.ColorIndex = 0
+End Sub
